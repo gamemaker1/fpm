@@ -18,13 +18,13 @@ FPM::Command.instance_variable_get(:@declared_options).each do |option|
 
     if option.type == :flag
         # it's a flag which means there are no parameters to the option
-        puts "* ``#{option.switches.first}``"
+        puts "* ``#{option.switches.first.strip}``"
     else
-        puts "* ``#{option.switches.first} #{option.type}``"
+        puts "* ``#{option.switches.first} #{option.type.strip}``"
     end
 
     if option.switches.length > 1
-        puts "    - Alternate option spellings: ``#{option.switches[1..].join(", ")}``"
+        puts "    - Alternate option spellings: ``#{option.switches[1..].join(", ").strip}``"
     end
     puts "    - #{text}"
     puts
@@ -42,9 +42,9 @@ FPM::Package.types.sort_by { |k,v| k }.each do |name, type|
 
     options.sort_by { |flag, _| flag }.each do |flag, param, help, options, block|
         if param == :flag 
-            puts "* ``#{flag.first}``"
+            puts "* ``#{flag.first.strip}``"
         else
-            puts "* ``#{flag.first} #{param}``"
+            puts "* ``#{flag.first} #{param.strip}``"
         end
 
         text = help.sub(/^\([^)]+\) /, "")
