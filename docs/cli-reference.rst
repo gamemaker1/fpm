@@ -1,4 +1,4 @@
-FPM Command-line Reference
+Command-line Reference
 ==========================
 
 This page documents the command-line flags available in FPM. You can also see this content in your terminal by running ``fpm --help``
@@ -588,12 +588,6 @@ General Options
 * ``--snap-grade GRADE``
     - (snap only) Grade of this snap.
 
-* ``--pleaserun-name SERVICE_NAME``
-    - (pleaserun only) The name of the service you are creating
-
-* ``--pleaserun-chdir CHDIR``
-    - (pleaserun only) The working directory used by the service
-
 * ``--pacman-optional-depends PACKAGE``
     - (pacman only) Add an optional dependency to the pacman package.
 
@@ -608,6 +602,12 @@ General Options
 
 * ``--pacman-compression COMPRESSION``
     - (pacman only) The compression type to use, must be one of gz, bzip2, xz, zstd, none.
+
+* ``--pleaserun-name SERVICE_NAME``
+    - (pleaserun only) The name of the service you are creating
+
+* ``--pleaserun-chdir CHDIR``
+    - (pleaserun only) The working directory used by the service
 
 * ``--virtualenv-pypi PYPI_URL``
     - (virtualenv only) PyPi Server uri for retrieving packages.
