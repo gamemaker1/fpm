@@ -12,22 +12,26 @@ puts
 
 puts "General Options"
 puts "---------------"
+puts
 
 FPM::Command.instance_variable_get(:@declared_options).each do |option|
     text = option.description.gsub("\n", " ")
 
-    if option.type == :flag
-        # it's a flag which means there are no parameters to the option
-        puts "* ``#{option.switches.first.strip}``"
-    else
-        puts "* ``#{option.switches.first} #{option.type.strip}``"
-    end
+    # Don't show output-format-specific options, they get their own section
+    if !text.include? "only)"
+        if option.type == :flag
+            # it's a flag which means there are no parameters to the option
+            puts "* ``#{option.switches.first.strip}``"
+        else
+            puts "* ``#{option.switches.first} #{option.type.strip}``"
+        end
 
-    if option.switches.length > 1
-        puts "    - Alternate option spellings: ``#{option.switches[1..].join(", ").strip}``"
+        if option.switches.length > 1
+            puts "    - Alternate option spellings: ``#{option.switches[1..].join(", ").strip}``"
+        end
+        puts "    - #{text}"
+        puts
     end
-    puts "    - #{text}"
-    puts
 end
 
 FPM::Package.types.sort_by { |k,v| k }.each do |name, type|
